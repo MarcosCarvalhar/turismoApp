@@ -10,19 +10,23 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "Avaliacao")
+@Table(name = "Endereco")
 @Getter
 @Setter
 public class Endereco {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEndereco;
+    private int id;
 
     private String cep;
     private String rua;
     private String numero;
     private String cidade;
     private String estado;
+
+    public Endereco() {
+        
+    }
 
 }

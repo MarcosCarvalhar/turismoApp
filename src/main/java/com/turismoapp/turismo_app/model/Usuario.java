@@ -10,18 +10,23 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "Avaliacao")
+@Table(name = "Usuario")
 @Getter
 @Setter
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private int id;
 
     private String cpf;
     private String nome;
     private String email;
     private String senha;
 
+    private String tipo;
+
+    public Usuario() {
+        
+    }
 }

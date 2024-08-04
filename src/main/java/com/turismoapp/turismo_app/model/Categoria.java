@@ -10,14 +10,19 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "Avaliacao")
+@Table(name = "Categoria")
 @Getter
 @Setter
 public class Categoria {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategoria;
+    private int id;
+    
     private String nomeCategoria;
+
+    public Categoria() {
+        
+    }
 
 }
