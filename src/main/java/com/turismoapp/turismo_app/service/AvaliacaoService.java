@@ -122,4 +122,8 @@ public class AvaliacaoService {
         return avaliacaoRepository.findByLocalNomeContaining(nome);
     }
 
+    public Iterable<Avaliacao> listarAvaliacoesPorUsuario(String usuarioId) {
+        return avaliacaoRepository.findByUsuarioId(Long.parseLong(usuarioId));
+    } 
+
 }

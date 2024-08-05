@@ -17,6 +17,8 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Integer> 
 
     List<Avaliacao> findByLocalId(Long localId);
 
+    List<Avaliacao> findByUsuarioId(Long usuarioId);
+
     @Query("SELECT COUNT(a) FROM Avaliacao a WHERE a.local.id = :localId")
     long countByLocalId(@Param("localId") Long localId);
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.turismoapp.turismo_app.model.Local;
 import com.turismoapp.turismo_app.service.AvaliacaoService;
 
 @RestController
+@CrossOrigin (origins = "*")
 public class AvaliacaoController {
 
     @Autowired
@@ -42,13 +44,18 @@ public class AvaliacaoController {
         return avaliacaoService.getAllAvaliacoes();
     }
 
+    @GetMapping("/listarAvaliacoesUsuario/{idUsuario}")
+    public Iterable<Avaliacao> listarAvaliacoesPorUsuario(@PathVariable String idUsuario) {
+        return avaliacaoService.listarAvaliacoesPorUsuario(idUsuario);
+    }
+
     @GetMapping("/melhoresLugares")
     public ResponseEntity<List<Local>> getTopLocaisPorNotaMedia() {
         List<Local> locais = avaliacaoService.getTopLocaisPorNotaMedia();
         return ResponseEntity.ok(locais);
     }
 
-    @GetMapping("/listarAvaliacoes/{nome}")
+    @GetMapping("/listarAvaliacoesNome/{nome}")
     public ResponseEntity<List<Avaliacao>> getAvaliacoesByNome(@PathVariable String nome) {
         List<Avaliacao> avaliacoes = avaliacaoService.findAvaliacoesByLocalNome(nome);
         return ResponseEntity.ok(avaliacoes);

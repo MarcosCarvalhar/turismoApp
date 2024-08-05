@@ -3,6 +3,7 @@ package com.turismoapp.turismo_app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.turismoapp.turismo_app.model.Usuario;
 import com.turismoapp.turismo_app.service.UsuarioService;
 
 @RestController
+@CrossOrigin (origins = "*")
 public class UsuarioController {
 
     @Autowired
@@ -37,10 +39,10 @@ public class UsuarioController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Usuario usuario = usuarioService.login(request.getEmail(), request.getSenha());
         if (usuario != null) {
-            return ResponseEntity.ok("Login successful!");
+            return ResponseEntity.ok(usuario);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed!");
     }
