@@ -41,12 +41,12 @@ public class AvaliacaoService {
 
         if (acao.equals("cadastrar") && !existente.isEmpty()) {
     
-            return ("O usuário já fez uma avaliação para este local.");    
+            new RuntimeException("O usuário já fez uma avaliação para este local.");  
         } 
         
         if (acao.equals("alterar") && existente.isEmpty()) {
-    
-            return ("Avaliação não encontrada.");     
+
+            new RuntimeException("Avaliação não encontrada.");
         } 
 
         int localId = avaliacao.getLocal().getId();
@@ -116,6 +116,10 @@ public class AvaliacaoService {
         return resultados.stream()
                 .map(result -> (Local) result[0])
                 .collect(Collectors.toList());
+    }
+
+    public List<Avaliacao> findAvaliacoesByLocalNome(String nome) {
+        return avaliacaoRepository.findByLocalNomeContaining(nome);
     }
 
 }

@@ -26,5 +26,7 @@ public interface AvaliacaoRepository extends CrudRepository<Avaliacao, Integer> 
     @Query("SELECT a.local, AVG(a.nota) as media FROM Avaliacao a GROUP BY a.local ORDER BY media DESC")
     List<Object[]> findTopLocaisPorNotaMedia(Pageable pageable);
 
+    @Query("SELECT a FROM Avaliacao a WHERE a.local.nome LIKE %:nome%")
+    List<Avaliacao> findByLocalNomeContaining(@Param("nome") String nome);
     
 }

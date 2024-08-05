@@ -19,6 +19,7 @@ public class UsuarioService {
     public String usuarioAddUpdate(Usuario usuario, String acao) {
 
         if(acao.equals("cadastrar")) {
+            usuario.setTipo("usuario");
             new ResponseEntity<Usuario>(usuarioRepository.save(usuario), HttpStatus.CREATED);
             return String.valueOf(usuario.getId());
 

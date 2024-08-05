@@ -47,4 +47,10 @@ public class AvaliacaoController {
         List<Local> locais = avaliacaoService.getTopLocaisPorNotaMedia();
         return ResponseEntity.ok(locais);
     }
+
+    @GetMapping("/listarAvaliacoes/{nome}")
+    public ResponseEntity<List<Avaliacao>> getAvaliacoesByNome(@PathVariable String nome) {
+        List<Avaliacao> avaliacoes = avaliacaoService.findAvaliacoesByLocalNome(nome);
+        return ResponseEntity.ok(avaliacoes);
+    }
 }
